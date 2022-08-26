@@ -4,12 +4,13 @@
 #
 Name     : pypi-backoff
 Version  : 2.1.2
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/3b/22/53182ff2977aa653cb61f30592cbfb5d3e0764368c8eaa8ec096e6899b7a/backoff-2.1.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/3b/22/53182ff2977aa653cb61f30592cbfb5d3e0764368c8eaa8ec096e6899b7a/backoff-2.1.2.tar.gz
 Summary  : Function decoration for backoff and retry
 Group    : Development/Tools
 License  : MIT
+Requires: pypi-backoff-license = %{version}-%{release}
 Requires: pypi-backoff-python = %{version}-%{release}
 Requires: pypi-backoff-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -28,6 +29,14 @@ backoff
 :target: https://pypi.python.org/pypi/backoff
 .. image:: https://img.shields.io/github/license/litl/backoff
 :target: https://github.com/litl/backoff/blob/master/LICENSE
+
+%package license
+Summary: license components for the pypi-backoff package.
+Group: Default
+
+%description license
+license components for the pypi-backoff package.
+
 
 %package python
 Summary: python components for the pypi-backoff package.
@@ -60,7 +69,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1661521788
+export SOURCE_DATE_EPOCH=1661522170
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -84,6 +93,8 @@ popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pypi-backoff
+cp %{_builddir}/backoff-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-backoff/59469f232f5d88e7ef381cd91912e799324951d7 || :
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -100,6 +111,10 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pypi-backoff/59469f232f5d88e7ef381cd91912e799324951d7
 
 %files python
 %defattr(-,root,root,-)
