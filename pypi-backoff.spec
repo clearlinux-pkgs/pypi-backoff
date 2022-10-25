@@ -4,7 +4,7 @@
 #
 Name     : pypi-backoff
 Version  : 2.2.1
-Release  : 6
+Release  : 7
 URL      : https://files.pythonhosted.org/packages/47/d7/5bbeb12c44d7c4f2fb5b56abce497eb5ed9f34d85701de869acedd602619/backoff-2.2.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/47/d7/5bbeb12c44d7c4f2fb5b56abce497eb5ed9f34d85701de869acedd602619/backoff-2.2.1.tar.gz
 Summary  : Function decoration for backoff and retry
